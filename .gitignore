@@ -1,0 +1,6 @@
+# Dossiers
+node_modules/
+dist/
+
+# Fichiers
+npm-debug.log*
