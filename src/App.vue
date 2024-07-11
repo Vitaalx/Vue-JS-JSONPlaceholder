@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import TheNav from "./components/TheNav.vue";
 import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <section class="flex flex-col p-10">
+    <TheNav />
     <RouterView />
-  </section>
 </template>

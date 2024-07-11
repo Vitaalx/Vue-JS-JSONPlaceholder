@@ -1,5 +1,5 @@
-export function flattenObject(obj: object, parentKey = '') {
-    let flattened = {};
+export function flattenObject(obj: object, parentKey = "") {
+    let flattened: Record<string, any> = {};
   
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {

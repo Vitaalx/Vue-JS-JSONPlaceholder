@@ -2,46 +2,43 @@
 import { useRoute } from 'vue-router';
 import TheTable from '../components/TheTable.vue';
 import TheLoader from '../components/TheLoader.vue';
-import { useGetUsers } from '../composables/useGetUsers';
+import { useGetAlbums } from '../composables/useGetAlbums';
 import { onMounted, watch } from 'vue';
 
 const route = useRoute();
 
-const { users, getUsers, loading, abortController } = useGetUsers();
+const { albums, getAlbums, loading, abortController } = useGetAlbums();
 
 onMounted(() => {
     if (route.query.id && route.query.id !== "") {
-        getUsers(route.query.id as string);
+        getAlbums(route.query.id as string);
     } else {
-        getUsers();
+        getAlbums();
     }
 });
 
 watch(route, () => {
     if (route.query.id && route.query.id !== "") {
-        getUsers(route.query.id as string);
+        getAlbums(route.query.id as string);
     } else {
-        getUsers();
+        getAlbums();
     }
 });
+
 </script>
 <template>
-    <section
+   <section
         class="flex flex-col min-h-screen"
         :class="loading ? 'justify-center' : 'justify-start'"
-    >
-    <div 
-        class="grow"
-    >
+   >
         <TheLoader
             v-if="loading"
             :abort-controller="abortController"
         />
-        <TheTable 
+        <TheTable
             v-else
-            :items="users"
-            title="Liste des utilisateurs"
+            :items="albums"
+            title="Liste des albums"
         />
-    </div>
-    </section>
+   </section>
 </template>

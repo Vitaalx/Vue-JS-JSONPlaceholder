@@ -2,46 +2,43 @@
 import { useRoute } from 'vue-router';
 import TheTable from '../components/TheTable.vue';
 import TheLoader from '../components/TheLoader.vue';
-import { useGetUsers } from '../composables/useGetUsers';
+import { useGetComments } from '../composables/useGetComments';
 import { onMounted, watch } from 'vue';
 
 const route = useRoute();
 
-const { users, getUsers, loading, abortController } = useGetUsers();
+const { comments, getComments, loading, abortController } = useGetComments();
 
 onMounted(() => {
     if (route.query.id && route.query.id !== "") {
-        getUsers(route.query.id as string);
+        getComments(route.query.id as string);
     } else {
-        getUsers();
+        getComments();
     }
 });
 
 watch(route, () => {
     if (route.query.id && route.query.id !== "") {
-        getUsers(route.query.id as string);
+        getComments(route.query.id as string);
     } else {
-        getUsers();
+        getComments();
     }
 });
+
 </script>
 <template>
     <section
         class="flex flex-col min-h-screen"
         :class="loading ? 'justify-center' : 'justify-start'"
     >
-    <div 
-        class="grow"
-    >
-        <TheLoader
+        <TheLoader 
             v-if="loading"
             :abort-controller="abortController"
         />
-        <TheTable 
+        <TheTable
             v-else
-            :items="users"
-            title="Liste des utilisateurs"
+            :items="comments"
+            title="Liste des commentaires"
         />
-    </div>
     </section>
 </template>

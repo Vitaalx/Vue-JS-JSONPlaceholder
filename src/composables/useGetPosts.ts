@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { Post } from "../types/Post";
+import { Post } from "../types/post";
 import { postCollectionSchema } from "../schemas/post";
 
 export function useGetPosts() {
@@ -30,6 +30,7 @@ export function useGetPosts() {
         posts,
         getPosts,
         error,
-        loading
+        loading,
+        abortController
     };
 }

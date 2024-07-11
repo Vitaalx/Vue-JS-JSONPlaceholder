@@ -1,0 +1,67 @@
+<script setup lang="ts">
+</script>
+<template>
+    <nav class="p-4 text-white bg-slate-800">
+        <div class="flex justify-between mx-auto">
+            <h1 class="text-xl font-semibold">JSON Placeholder</h1>
+            <ul class="flex space-x-4">
+                <li>
+                    <RouterLink
+                        to="/"
+                        class="hover:underline"
+                    >
+                        Accueil
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink
+                        to="/posts"
+                        class="hover:underline"
+                    >
+                        Posts
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink
+                        to="/users"
+                        class="hover:underline"
+                    >
+                        Users
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink
+                        to="/albums"
+                        class="hover:underline"
+                    >
+                        Albums
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink
+                        to="/comments"
+                        class="hover:underline"
+                    >
+                        Comments
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink
+                        to="/todos"
+                        class="hover:underline"
+                    >
+                        Todos
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink
+                        to="/photos"
+                        class="hover:underline"
+                    >
+                        Photos
+                    </RouterLink>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</template>
