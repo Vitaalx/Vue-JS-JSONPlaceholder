@@ -6,6 +6,10 @@ import { onUnmounted, watch } from 'vue';
 import { useGetCollection } from '../composables/useGetCollection';
 import { ZodSchema } from 'zod';
 
+/* 
+    Page générique pour afficher une collection de données avec le composant TheTable
+*/
+
 interface Props {
     schema: ZodSchema,
     path: string
@@ -15,7 +19,7 @@ const props = defineProps<Props>();
 
 const route = useRoute();
 
-const { collection, getCollection, loading, abortController, error } = useGetCollection();
+const { collection, getCollection, loading, abortController, error, title } = useGetCollection();
 
 const fetchCollection = () => {
     const id = route.query.id as string | null;
@@ -29,7 +33,7 @@ watch(
 );
 
 onUnmounted(() => {
-    abortController.abort();
+    abortController.value.abort();
 });
 
 </script>
@@ -40,12 +44,12 @@ onUnmounted(() => {
     >
         <TheLoader
             v-if="loading"
-            :abort-controller="abortController" 
+            :abort-controller="abortController"
         />
         <TheTable
             v-else-if="collection"
             :items="collection"
-            :title="`Liste des ${props.path}`"
+            :title="`Liste des ${title}`"
         />
         <p v-else-if="error">{{ error }}</p>
         <p v-else>Aucune donnée trouvée</p>

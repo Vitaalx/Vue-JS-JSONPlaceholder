@@ -58,12 +58,10 @@ function createGenericPageRoute(name: string, schema: ZodSchema, pageComponent: 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('../pages/HomePage.vue'),
+    component: () => import('../pages/HomePage.vue')
   },
   ...pageProps.map((page) => createGenericPageRoute(page.name, page.schema, page.pageComponent)),
 ];
-
-console.log(routes);
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

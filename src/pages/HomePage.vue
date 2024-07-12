@@ -1,14 +1,13 @@
-<script setup>
-import { ref, onMounted } from 'vue';
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { useGetCollection } from '../composables/useGetCollection';
+import { postCollectionSchema } from '../schemas/post';
+import { Post } from '../types/post';
 
-const posts = ref([]);
+const { collection, getCollection, error } = useGetCollection();
 
 onMounted(() => {
-  fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(data => {
-      posts.value = data.slice(0, 6);
-    });
+  getCollection(null, postCollectionSchema, "posts");
 });
 </script>
 <template>
@@ -24,9 +23,10 @@ onMounted(() => {
         <h3 class="mb-6 text-2xl font-bold">Derniers Posts</h3>
         <div id="posts" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div
-            v-for="post in posts"
-            :key="post.id"
+            v-if="collection"
             class="p-6 bg-white rounded-lg shadow-lg"
+            :key="post.id"
+            v-for="post in collection.slice(0, 6) as Post[]"
           >
             <RouterLink
               :to="{ name: 'posts', query: { id: post.id } }"
@@ -34,6 +34,16 @@ onMounted(() => {
               <h4 class="mb-2 text-xl font-bold">{{ post.title }}</h4>
               <p>{{ post.body }}</p>
             </RouterLink>
+          </div>
+          <div
+            v-else-if="error"
+          >
+            <p>{{ error }}</p>
+          </div>
+          <div
+            v-else
+          >
+            <p>Aucun posts.</p>
           </div>
         </div>
       </main>
