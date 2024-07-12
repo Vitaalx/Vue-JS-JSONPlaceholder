@@ -15,7 +15,7 @@ onMounted(() => {
     <section class="min-h-screen bg-gray-100">
       <div class="py-20 text-white bg-blue-800">
         <div class="container mx-auto text-center">
-          <h2 class="text-4xl font-bold">Bienvenue sur mon projet utilisant JSONPlaceholder API</h2>
+          <h2 class="text-4xl font-bold">Bienvenue sur mon projet utilisant {JSON}Placeholder API</h2>
           <p class="mt-4">Ce projet utilise l'API JSONPlaceholder pour afficher des données fictives.</p>
         </div>
       </div>
